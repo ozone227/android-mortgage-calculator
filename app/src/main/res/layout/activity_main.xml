@@ -1,18 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="drbond.mortgagecalculator.MainActivity">
+    android:paddingLeft="64dp"
+    android:paddingRight="64dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".MainActivity"
+    android:columnCount="2"
+    android:useDefaultMargins="true">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:id="@+id/purchasePriceEditTextEditText"
+        android:hint="@string/purchase_price"
+        android:layout_column="0"
+        android:digits="0123456789.,"
+        android:maxLength="10"
+        android:ems="10"
+        android:layout_columnSpan="2"
+        android:padding="12dp"
+        android:elevation="4dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:id="@+id/interestEditText"
+        android:hint="@string/interest_rate"
+        android:layout_column="0"
+        android:digits="0123456789.,"
+        android:maxLength="3"
+        android:ems="10"
+        android:layout_columnSpan="2"
+        android:padding="12dp"
+        android:elevation="4dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:id="@+id/downPaymentEditText"
+        android:hint="@string/down_payment"
+        android:layout_column="0"
+        android:digits="0123456789.,"
+        android:maxLength="10"
+        android:ems="10"
+        android:layout_columnSpan="2"
+        android:padding="12dp"
+        android:elevation="4dp"/>
+
+    <SeekBar
+        android:id="@+id/percentSeekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_gravity="fill_horizontal"
+        android:elevation="4dp"
+        android:indeterminate="false"
+        android:max="30"
+        android:padding="12dp"
+        android:progress="20" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/mortgage_payments"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:padding="12dp"
+        android:elevation="4dp"/>
 
-</android.support.constraint.ConstraintLayout>
+</GridLayout>

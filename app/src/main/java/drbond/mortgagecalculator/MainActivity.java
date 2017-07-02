@@ -17,4 +17,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+
+
+    // listener object for the SeekBar's progress changed events
+
+
+    // listener object for the EditText's text-changed events
+
+
 }
+
+
