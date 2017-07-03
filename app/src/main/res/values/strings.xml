@@ -4,5 +4,5 @@
     <string name="down_payment">Down Payment</string>
     <string name="interest_rate">Interest Rate</string>
     <string name="duration">Duration</string>
-    <string name="mortgage_payments">Payment Options</string>
+    <string name="mortgage_payment">Payment Options</string>
 </resources>

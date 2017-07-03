@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:id="@+id/purchasePriceEditTextEditText"
+        android:id="@+id/purchasePriceEditText"
         android:hint="@string/purchase_price"
         android:layout_column="0"
         android:digits="0123456789.,"
@@ -28,12 +28,12 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:id="@+id/interestEditText"
         android:hint="@string/interest_rate"
         android:layout_column="0"
         android:digits="0123456789.,"
-        android:maxLength="3"
+        android:maxLength="6"
         android:ems="10"
         android:layout_columnSpan="2"
         android:padding="12dp"
@@ -53,7 +53,7 @@
         android:elevation="4dp"/>
 
     <SeekBar
-        android:id="@+id/percentSeekBar"
+        android:id="@+id/durationSeekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -66,12 +66,12 @@
         android:progress="20" />
 
     <TextView
+        android:id="@+id/mortgagePayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mortgage_payments"
+        android:text="@string/mortgage_payment"
         android:layout_column="0"
         android:layout_columnSpan="2"
         android:padding="12dp"
         android:elevation="4dp"/>
-
 </GridLayout>

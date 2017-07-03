@@ -3,28 +3,29 @@ package drbond.mortgagecalculator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
-
 
 public class MainActivity extends AppCompatActivity {
 
-    // formatters
+    // Formatting
     private static final NumberFormat currencyFormat =
             NumberFormat.getCurrencyInstance();
     private static final NumberFormat percentFormat =
             NumberFormat.getPercentInstance();
 
+    // Variables
     private double purchasePrice = 0.0;
     private double downPayment = 0.0;
     private double interestRate = 0.0;
     private int duration = 20;
 
-    private TextView purchasePriceTextView;
-    private TextView downPaymentTextView;
+    //TextViews
+  //  private TextView purchasePriceTextView;
+   // private TextView downPaymentTextView;
     private TextView mortgagePayment;
 
 
@@ -33,29 +34,95 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // TextView References
+        mortgagePayment = (TextView) findViewById(R.id.mortgagePayment);
 
+
+        // TextWatchers
+        EditText purchasePriceEditText =
+                (EditText) findViewById(R.id.purchasePriceEditText);
+        purchasePriceEditText.addTextChangedListener(purchasePriceEditTextWatcher);
+
+        EditText downPaymentEditText =
+                (EditText) findViewById(R.id.downPaymentEditText);
+        downPaymentEditText.addTextChangedListener(downPaymentEditTextWatcher);
+
+        EditText interestEditText =
+                (EditText) findViewById(R.id.interestEditText);
+        interestEditText.addTextChangedListener(interestEditTextWatcher);
+
+
+        // SeekBar
+        SeekBar durationSeekBar =
+                (SeekBar) findViewById(R.id.durationSeekBar);
+        durationSeekBar.setOnSeekBarChangeListener(seekBarListener);
 
     }
 
     // mortgage calculator
 
     private void calculator() {
-
+        mortgagePayment.setText(currencyFormat.format((purchasePrice - downPayment) * interestRate));
 
     }
 
 
     // listener object for PurchasePrice EditText
+    private final TextWatcher purchasePriceEditTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            purchasePrice = Double.parseDouble(s.toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     // listener object for DownPayment EditText
+    private final TextWatcher downPaymentEditTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            downPayment = Double.parseDouble(s.toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     // listener object for InterestRate EditText
 
+    private final TextWatcher interestEditTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            interestRate = Double.parseDouble(s.toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     // listener object for the Duration SeekBar
-
     private final SeekBar.OnSeekBarChangeListener seekBarListener =
             new SeekBar.OnSeekBarChangeListener() {
                 // update percent, then call calculate
@@ -63,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onProgressChanged(SeekBar seekBar, int progress,
                                               boolean fromUser) {
                     duration = progress; // set percent based on progress
-                    calculator(); // calculate and display tip and total
+                    calculator(); // calculate & display
                 }
 
                 @Override
@@ -72,8 +139,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) { }
             };
-
-
 
 }
 
