@@ -62,15 +62,15 @@
 
     <SeekBar
         android:id="@+id/durationSeekBar"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_column="1"
         android:layout_gravity="fill_horizontal"
         android:elevation="4dp"
-        android:indeterminate="false"
         android:max="30"
-        android:padding="12dp"
-        android:progress="10"/>
+        android:padding="12dp"/>
+
 
     <TextView
         android:id="@+id/mortgagePayment"

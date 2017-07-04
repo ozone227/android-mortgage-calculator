@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
     // Formatting
     private static final NumberFormat currencyFormat =
             NumberFormat.getCurrencyInstance();
-    private static final NumberFormat percentFormat =
-            NumberFormat.getPercentInstance();
 
     // Variables
     private double purchasePrice = 0.0;
@@ -60,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
     // mortgage calculator
 
     private void calculator() {
-    // prepare inputs for calculation
+        durationTerm.setText(String.valueOf(duration + " Years"));
+        // prepare inputs for calculation
         interestRate /= 100.0;
         double loanAmount = purchasePrice-downPayment;
         double monthlyRate = interestRate / 12.0;
@@ -100,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             downPayment = Double.parseDouble(s.toString());
+            calculator();
         }
 
         @Override
@@ -134,7 +134,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress,
                                               boolean fromUser) {
-                    seekBar.setProgress(20);
+                    seekBar.setProgress(10);
+                    //seekBar.incrementProgressBy(10);
                     seekBar.setMax(30);
 
                     duration = progress; // set duration based on bar progress
@@ -147,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) { }
             };
-
 }
 
 
