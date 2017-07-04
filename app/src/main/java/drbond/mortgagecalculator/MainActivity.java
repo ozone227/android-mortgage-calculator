@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import java.text.NumberFormat;
+import java.lang.Math;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,10 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private int duration = 20;
 
     //TextViews
-  //  private TextView purchasePriceTextView;
-   // private TextView downPaymentTextView;
     private TextView mortgagePayment;
-
+    private TextView durationTerm;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         // TextView References
         mortgagePayment = (TextView) findViewById(R.id.mortgagePayment);
-
+        durationTerm = (TextView) findViewById(R.id.durationTermTextView);
 
         // TextWatchers
         EditText purchasePriceEditText =
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 (EditText) findViewById(R.id.interestEditText);
         interestEditText.addTextChangedListener(interestEditTextWatcher);
 
-
         // SeekBar
         SeekBar durationSeekBar =
                 (SeekBar) findViewById(R.id.durationSeekBar);
@@ -62,10 +60,17 @@ public class MainActivity extends AppCompatActivity {
     // mortgage calculator
 
     private void calculator() {
-        mortgagePayment.setText(currencyFormat.format((purchasePrice - downPayment) * interestRate));
+    // prepare inputs for calculation
+        interestRate /= 100.0;
+        double loanAmount = purchasePrice-downPayment;
+        double monthlyRate = interestRate / 12.0;
+        int termInMonths = duration * 12;
 
+        // calculate the monthly payment and display
+        double mortgageCalc =(loanAmount*monthlyRate) /
+                (1-Math.pow(1+monthlyRate, -termInMonths));
+        mortgagePayment.setText(currencyFormat.format((mortgageCalc)));
     }
-
 
     // listener object for PurchasePrice EditText
     private final TextWatcher purchasePriceEditTextWatcher = new TextWatcher() {
@@ -129,7 +134,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress,
                                               boolean fromUser) {
-                    duration = progress; // set percent based on progress
+                    seekBar.setProgress(20);
+                    seekBar.setMax(30);
+
+                    duration = progress; // set duration based on bar progress
                     calculator(); // calculate & display
                 }
 
