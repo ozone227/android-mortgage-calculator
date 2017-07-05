@@ -52,33 +52,39 @@
         android:padding="12dp"
         android:elevation="4dp"/>
 
+
+    <SeekBar
+        android:id="@+id/durationSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="false"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:elevation="4dp"
+        android:max="30"
+        android:padding="12dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/duration_term"
         android:id="@+id/durationTermTextView"
-        android:layout_gravity="center_vertical|right"/>
-
-    <SeekBar
-        android:id="@+id/durationSeekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_column="1"
-        android:layout_gravity="fill_horizontal"
+        android:padding="12dp"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
         android:elevation="4dp"
-        android:max="30"
-        android:padding="12dp"/>
-
+        />
 
     <TextView
         android:id="@+id/mortgagePayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/mortgage_payment"
         android:layout_column="0"
         android:layout_columnSpan="2"
         android:padding="12dp"
+        android:maxLength="30"
         android:elevation="4dp"/>
 </GridLayout>

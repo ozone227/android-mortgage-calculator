@@ -1,5 +1,4 @@
 package drbond.mortgagecalculator;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -99,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             downPayment = Double.parseDouble(s.toString());
-            calculator();
         }
 
         @Override
@@ -134,9 +132,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress,
                                               boolean fromUser) {
-                    seekBar.setProgress(10);
-                    //seekBar.incrementProgressBy(10);
-                    seekBar.setMax(30);
 
                     duration = progress; // set duration based on bar progress
                     calculator(); // calculate & display

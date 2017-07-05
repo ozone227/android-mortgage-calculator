@@ -5,5 +5,5 @@
     <string name="interest_rate">Interest Rate</string>
     <string name="duration">Duration</string>
     <string name="mortgage_payment">Monthly Payment</string>
-    <string name="duration_term">20 yrs</string>
+    <string name="duration_term">Length of Loan</string>
 </resources>
