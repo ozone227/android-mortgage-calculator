@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private double purchasePrice = 0.0;
     private double downPayment = 0.0;
     private double interestRate = 0.0;
-    private int duration = 20;
+    private double decInterestRate = (interestRate /= 100.0);
+    private int duration = 0;
 
     //TextViews
     private TextView mortgagePayment;
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         SeekBar durationSeekBar =
                 (SeekBar) findViewById(R.id.durationSeekBar);
         durationSeekBar.setOnSeekBarChangeListener(seekBarListener);
-
     }
 
     // mortgage calculator
@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
     private void calculator() {
         durationTerm.setText(String.valueOf(duration + " Years"));
         // prepare inputs for calculation
-        interestRate /= 100.0;
+
         double loanAmount = purchasePrice-downPayment;
-        double monthlyRate = interestRate / 12.0;
+        double monthlyRate = decInterestRate / 12.0;
         int termInMonths = duration * 12;
 
         // calculate the monthly payment and display
@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             interestRate = Double.parseDouble(s.toString());
+            decInterestRate = (interestRate /= 100.0);
         }
 
         @Override
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     // listener object for the Duration SeekBar
     private final SeekBar.OnSeekBarChangeListener seekBarListener =
             new SeekBar.OnSeekBarChangeListener() {
-                // update percent, then call calculate
+                // update term, then call the calculator
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress,
                                               boolean fromUser) {
